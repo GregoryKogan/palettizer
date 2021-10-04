@@ -1,33 +1,41 @@
 <template>
-    <div class="home">
-        <h1>Image Palettizer</h1>
-        <DropZone v-if="!dropzoneFile" @drop.prevent="drop" @change="selectedFile"/>
-        <span class="file-info">File: {{dropzoneFile.name}}</span>
-    </div>
+    <v-app>
+        <v-main>
+            <div class="home">
+                <h1>Image Palettizer</h1>
+                <DropZone v-if="!dropzoneFile" @drop.prevent="drop" @change="selectedFile"/>
+                <img v-if="imgSource" :src="imgSource">
+                <span v-if="dropzoneFile" class="file-info">File: {{dropzoneFile.name}}</span>
+            </div>
+        </v-main>
+    </v-app>
 </template>
 
 <script>
 import DropZone from '../components/DropZone.vue';
-import { ref } from 'vue';
 
 export default {
     name: "Home",
-    components: {
-        DropZone,
-    },
-    setup(){
-        let dropzoneFile = ref("");
-
-        const drop = (event) => {
-            dropzoneFile.value = event.dataTransfer.files[0]
+    components: { DropZone, },
+    data () {
+        return {
+            dropzoneFile: null,
+            imgSource: null,
         }
-
-        const selectedFile = () => {
-            dropzoneFile.value = document.querySelector(".dropzoneFile").files[0]
-        }
-
-        return { dropzoneFile, drop, selectedFile };
     },
+    methods: {
+        drop(e){
+            this.dropzoneFile = e.dataTransfer.files[0]
+            this.getImgSource()
+        },
+        selectedFile() {
+            this.dropzoneFile = document.querySelector(".dropzoneFile").files[0]
+            this.getImgSource()
+        },
+        getImgSource(){
+            this.imgSource = URL.createObjectURL(this.dropzoneFile)
+        }
+    }
 }
 </script>
 

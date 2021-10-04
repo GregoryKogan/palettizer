@@ -14,20 +14,19 @@
 </template>
 
 <script>
-import { ref } from 'vue';
-
-export default {
-    name: "DropZone",
-    setup(){
-        const active = ref(false);
-
-        const toggleActive = () => {
-            active.value = !active.value;
-        }
-
-        return { active, toggleActive };
+    export default {
+        name: "DropZone",
+        data () {
+            return {
+                active: false,
+            }
+        },
+        methods: {
+            toggleActive() {
+                this.active = !this.active;
+            },
+        },
     }
-}
 </script>
 
 <style>
