@@ -1,5 +1,7 @@
 <template>
-    <div v-if="this.$store.state.status != 'Empty'" class="progress-bar">
+    <div 
+    v-if="(this.$store.state.status != 'Empty') && (this.$store.state.status != 'Original')" 
+    class="progress-bar">
         <span class="status">{{this.$store.state.status}}</span>
         <v-progress-linear 
         :value="this.$store.state.progress"

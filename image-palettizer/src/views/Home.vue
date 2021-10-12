@@ -5,10 +5,26 @@
       <ProgressBar/>
       <v-btn 
       @click="processImage"
+      v-if="this.$store.state.status == 'Original'"
       color='#bd93f9'
+      dark
       large
+      rounded
       style="margin-top: 20px;"
-      >Process</v-btn>
+      >
+      Process
+      </v-btn>
+      <v-btn 
+      @click="downloadImage"
+      v-if="this.$store.state.status == 'Done!'"
+      color='#bd93f9'
+      dark
+      large
+      rounded
+      style="margin-top: 20px;"
+      >
+      Download
+      </v-btn>
   </div>
 </template>
 
@@ -25,7 +41,20 @@ export default {
   methods: {
     processImage(){
       process()
-    }
+    },
+    downloadImage(){
+      const filename = this.$store.state.inputImageFile['name']
+      const filetype = this.$store.state.inputImageFile['type']
+      const usedPalette = this.$store.state.palette
+      const canvas = document.getElementById("main-canvas")
+      const img = canvas.toDataURL(filetype)
+      let a = document.createElement('a')
+      a.href = img
+      a.download = usedPalette + '-' + filename
+      a.style.display = 'none'
+      a.click()
+      a.remove()
+    },
   },
 }
 </script>

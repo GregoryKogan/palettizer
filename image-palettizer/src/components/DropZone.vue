@@ -10,13 +10,7 @@
         :class="{ 'active-dropzone': active }"
         >
             <h2 v-if="!$store.state.inputImageFile">Drop Image here</h2>
-            <!-- <v-img 
-            v-else 
-            class='thubnail' 
-            :src="$store.state.inputImage"
-            :contain=true
-            ></v-img> -->
-            <canvas v-else id="main-canvas"></canvas>
+            <canvas v-else id="main-canvas">Your browser does not support Canvas.</canvas>
         </div>
         <input 
         type="file"  
@@ -42,8 +36,10 @@ export default {
     },
     watch: {
         image: function(val){
+            this.$store.commit('setStatus', 'Original')
             const canvas = document.getElementById('main-canvas')
             const ctx = canvas.getContext('2d')
+            ctx.clearRect(0, 0, canvas.width, canvas.height)
             const loadedImage = new Image()
             loadedImage.src = val
             loadedImage.addEventListener('load', function(){
@@ -58,7 +54,6 @@ export default {
                     canvas.style.width = 'auto'
                     canvas.style.height = '100%'
                 }
-                ctx.clearRect(0, 0, canvas.width, canvas.height)
                 ctx.drawImage(loadedImage, 0, 0, canvas.width, canvas.height)
             })
         }
