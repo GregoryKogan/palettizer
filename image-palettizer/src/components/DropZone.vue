@@ -10,12 +10,13 @@
         :class="{ 'active-dropzone': active }"
         >
             <h2 v-if="!$store.state.inputImageFile">Drop Image here</h2>
-            <v-img 
+            <!-- <v-img 
             v-else 
             class='thubnail' 
             :src="$store.state.inputImage"
             :contain=true
-            ></v-img>
+            ></v-img> -->
+            <canvas v-else id="main-canvas"></canvas>
         </div>
         <input 
         type="file"  
@@ -34,6 +35,33 @@ export default {
         file: null,
         active: false,
     }),
+    computed: {
+        image(){
+            return this.$store.state.inputImage
+        },
+    },
+    watch: {
+        image: function(val){
+            const canvas = document.getElementById('main-canvas')
+            const ctx = canvas.getContext('2d')
+            const loadedImage = new Image()
+            loadedImage.src = val
+            loadedImage.addEventListener('load', function(){
+                canvas.width = loadedImage.width
+                canvas.height = loadedImage.height
+                const ratio = canvas.width / canvas.height
+                if (ratio > 16 / 9){
+                    canvas.style.width = '100%'
+                    canvas.style.height = 'auto'
+                }
+                else{
+                    canvas.style.width = 'auto'
+                    canvas.style.height = '100%'
+                }
+                ctx.drawImage(loadedImage, 0, 0, canvas.width, canvas.height)
+            })
+        }
+    },
     methods: {
         toggleActive(){
             this.active = !this.active

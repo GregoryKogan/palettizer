@@ -7,13 +7,14 @@
 </template>
 
 <script>
+import { loadPalettes } from "./palettizer";
 
 export default {
   name: 'App',
 
-  data: () => ({
-    //
-  }),
+  async created(){
+    loadPalettes()
+  }
 };
 </script>
 

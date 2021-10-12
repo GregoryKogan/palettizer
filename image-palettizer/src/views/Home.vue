@@ -2,11 +2,18 @@
   <div class="home">
       <h1>Image Palettizer</h1>
       <DropZone filetype="image"/>
+      <v-btn 
+      @click="processImage"
+      color='#bd93f9'
+      large
+      style="margin-top: 20px;"
+      >Process</v-btn>
   </div>
 </template>
 
 <script>
 import DropZone from '../components/DropZone.vue';
+import { process } from "../palettizer";
 
 export default {
   name: "Home",
@@ -14,6 +21,9 @@ export default {
   data: () => ({
   }),
   methods: {
+    processImage(){
+      process()
+    }
   },
 }
 </script>
