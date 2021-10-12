@@ -58,6 +58,7 @@ export default {
                     canvas.style.width = 'auto'
                     canvas.style.height = '100%'
                 }
+                ctx.clearRect(0, 0, canvas.width, canvas.height)
                 ctx.drawImage(loadedImage, 0, 0, canvas.width, canvas.height)
             })
         }

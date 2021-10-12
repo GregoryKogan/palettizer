@@ -2,6 +2,7 @@
   <div class="home">
       <h1>Image Palettizer</h1>
       <DropZone filetype="image"/>
+      <ProgressBar/>
       <v-btn 
       @click="processImage"
       color='#bd93f9'
@@ -13,11 +14,12 @@
 
 <script>
 import DropZone from '../components/DropZone.vue';
+import ProgressBar from '../components/ProgressBar.vue'
 import { process } from "../palettizer";
 
 export default {
   name: "Home",
-  components: {DropZone},
+  components: { DropZone, ProgressBar },
   data: () => ({
   }),
   methods: {
