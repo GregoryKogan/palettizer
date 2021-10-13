@@ -6,8 +6,8 @@
       <v-btn 
       @click="processImage"
       v-if="this.$store.state.status == 'Original'"
-      color='#bd93f9'
-      dark
+      color='#50fa7b'
+      light
       large
       rounded
       style="margin-top: 20px;"
@@ -17,25 +17,27 @@
       <v-btn 
       @click="downloadImage"
       v-if="this.$store.state.status == 'Done!'"
-      color='#bd93f9'
-      dark
+      color='#8be9fd'
+      light
       large
       rounded
       style="margin-top: 20px;"
       >
       Download
       </v-btn>
+      <Settings />
   </div>
 </template>
 
 <script>
 import DropZone from '../components/DropZone.vue';
 import ProgressBar from '../components/ProgressBar.vue'
+import Settings from '../components/Settings.vue'
 import { process } from "../palettizer";
 
 export default {
   name: "Home",
-  components: { DropZone, ProgressBar },
+  components: { DropZone, ProgressBar, Settings },
   data: () => ({
   }),
   methods: {
@@ -61,7 +63,6 @@ export default {
 
 <style>
     .home {
-        height: 100vh;
         display: flex;
         flex-direction: column;
         justify-content: center;

@@ -12,7 +12,7 @@ import { loadPalettes } from "./palettizer";
 export default {
   name: 'App',
 
-  async created(){
+  created(){
     loadPalettes()
   }
 };

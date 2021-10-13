@@ -5,7 +5,7 @@
         <span class="status">{{this.$store.state.status}}</span>
         <v-progress-linear 
         :value="this.$store.state.progress"
-        color="#bd93f9"
+        color="#50fa7b"
         height="5"
         dark
         rounded
