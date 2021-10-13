@@ -12,10 +12,11 @@
             <span class="option-bit">{{ option.label }}</span>
         </template>
         <template v-slot:selected-option=option>
-            <v-icon color="#bd93f9" left :size="30">mdi-palette</v-icon>
+            <v-icon color="#ff79c6" left :size="30">mdi-palette</v-icon>
             <span>{{option.label}}</span>
         </template>
         </vue-select>
+        <PalettePreview class="select-preview" :colors="this.$store.state.palettes[this.$store.state.palette]"/>
     </div>
 </template>
 
@@ -23,13 +24,14 @@
 import Vue from 'vue'
 import vSelect from 'vue-select'
 import 'vue-select/dist/vue-select.css';
+import PalettePreview from './PalettePreview.vue'
 
 
 Vue.component('vue-select', vSelect)
 
 export default {
     name: "PaletteSelect",
-    components: {},
+    components: { PalettePreview },
     data: () => ({
     }),
     methods: {
@@ -46,6 +48,10 @@ export default {
         width: 100%;
         height: 1000px;
     }
+    .palette-select .select-preview{
+        margin-top: 20px;
+    }
+
     .palette-chooser .vs__search::placeholder,
     .palette-chooser .vs__dropdown-toggle{
         background: #282a36;
@@ -60,6 +66,7 @@ export default {
     }
     .palette-chooser .vs__dropdown-menu{
         padding: 0;
+        margin-top: 10px;
         background: #282a36;
         border-radius: 10px;
         color: #f8f8f2;

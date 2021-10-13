@@ -94,7 +94,7 @@ export default {
         border: 4px dashed #bd93f9;
         background-color: #44475a;
         transition: .3 ease all;
-        color: #bd93f9;
+        color: #6272a4;
         border-radius: 10px;
     }
     .drop-zone label {
