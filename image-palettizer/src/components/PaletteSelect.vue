@@ -8,13 +8,13 @@
         :clearable='false'
         placeholder="Choose color palette"
         >
-        <template v-slot:option="option">
-            <span class="option-bit">{{ option.label }}</span>
-        </template>
-        <template v-slot:selected-option=option>
-            <v-icon color="#ff79c6" left :size="30">mdi-palette</v-icon>
-            <span>{{option.label}}</span>
-        </template>
+            <template v-slot:option="option">
+                <span class="option-bit">{{ option.label }}</span>
+            </template>
+            <template v-slot:selected-option=option>
+                <v-icon color="#ff79c6" left :size="30">mdi-palette</v-icon>
+                <span>{{option.label}}</span>
+            </template>
         </vue-select>
         <PalettePreview class="select-preview" :colors="this.$store.state.palettes[this.$store.state.palette]"/>
     </div>
@@ -46,7 +46,6 @@ export default {
 <style>
     .palette-select {
         width: 100%;
-        height: 1000px;
     }
     .palette-select .select-preview{
         margin-top: 20px;

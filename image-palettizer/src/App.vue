@@ -29,4 +29,7 @@ export default {
     padding: 0;
     box-sizing: border-box;
   }
+  #app{
+    background-color: #282a36;
+  }
 </style>
