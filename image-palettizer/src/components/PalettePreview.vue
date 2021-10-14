@@ -49,8 +49,9 @@ export default {
 
 <style>
     .palette-preview{
-        height: 70px;
-        margin: auto;
+        height: 80px;
+        margin-left: auto;
+        margin-right: auto;
     }
     .color-row{
         height: 100%;

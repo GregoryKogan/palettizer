@@ -12,19 +12,34 @@
       rounded
       style="margin-top: 20px;"
       >
-      Process
+        Process
       </v-btn>
-      <v-btn 
-      @click="downloadImage"
-      v-if="this.$store.state.status == 'Done!'"
-      color='#8be9fd'
-      light
-      large
-      rounded
-      style="margin-top: 20px;"
-      >
-      Download
-      </v-btn>
+      <v-row v-if="this.$store.state.status == 'Done!'" style="margin-top: 20px; width: 90vw;">
+        <v-spacer></v-spacer>
+        <v-btn 
+        @click="downloadImage"
+        color='#8be9fd'
+        light
+        large
+        rounded
+        style="width: 120px;"
+        >
+          Download
+        </v-btn>
+        <v-spacer></v-spacer>
+        <v-btn 
+        @click="undoPalettizing"
+        color='#ffb86c'
+        light
+        large
+        rounded
+        style="width: 120px;"
+
+        >
+          Undo
+        </v-btn>
+        <v-spacer></v-spacer>
+      </v-row>
       <Settings />
   </div>
 </template>
@@ -57,7 +72,18 @@ export default {
       a.click()
       a.remove()
     },
-  },
+    undoPalettizing(){
+      this.$store.commit('setStatus', 'Original')
+      const canvas = document.getElementById('main-canvas')
+      const ctx = canvas.getContext('2d')
+      ctx.clearRect(0, 0, canvas.width, canvas.height)
+      const loadedImage = new Image()
+      loadedImage.src = this.$store.state.inputImage
+      loadedImage.addEventListener('load', function(){
+          ctx.drawImage(loadedImage, 0, 0, canvas.width, canvas.height)
+      })
+    },
+  }
 }
 </script>
 

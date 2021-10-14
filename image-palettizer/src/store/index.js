@@ -39,6 +39,21 @@ export default new Vuex.Store({
     setStatus(state, status){
       state.status = status
     },
+    setBrightnessTweak(state, value){
+      state.brightnessTweak = value
+    },
+    setBrightnessSteps(state, value){
+      state.brightnessSteps = value
+    },
+    setQuadraticColorDist(state, value){
+      state.quadraticColorDist = value
+    },
+    setBlur(state, value){
+      state.blur = value
+    },
+    setBlurRadius(state, value){
+      state.blurRadius = value
+    },
   },
   actions: {
       updateInputImage(context, file){
