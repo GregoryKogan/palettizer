@@ -15,6 +15,7 @@ export default {
   name: 'App',
   components: { NavBar },
   created(){
+    document.title = "Image Palettizer"
     loadPalettes()
   }
 };
