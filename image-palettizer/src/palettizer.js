@@ -237,9 +237,12 @@ function startColorMatching(){
             palettizer.updateProgress(60, 'Blurring')
             setTimeout(startBlurring, delta)
         }
-        else{
+        else if (palettizer.brightnessTweak){
             palettizer.updateProgress(65, 'Tweaking brightness')
             setTimeout(startBrightnessTweaking, delta)
+        }
+        else{
+            palettizer.updateProgress(100, 'Done!')
         }
     }
 }

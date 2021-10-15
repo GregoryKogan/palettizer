@@ -104,7 +104,6 @@ export default {
         },
         changeBlurRadius(val){
             this.$store.commit('setBlurRadius', val)
-            console.log(this.$store.state.blurRadius)
         }
     },
 }

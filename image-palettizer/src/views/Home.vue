@@ -98,6 +98,7 @@ export default {
     }
     .home h1 {
         font-size: 40px;
-        margin-bottom: 32px;
+        margin-bottom: 20px;
+        margin-top: 20px;
     }
 </style> 
