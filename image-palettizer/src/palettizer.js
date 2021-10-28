@@ -285,5 +285,5 @@ export async function process(){
 
 export function loadPalettes(){
     store.commit('setPalettes', palettesData['palettes'])
-    store.commit('setPalette', Object.keys(store.state.palettes)[0])
+    store.commit('setPalette', Object.keys(store.state.palettes).reverse()[0])
 }

@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-      <h1>Image Palettizer</h1>
+      <h1>Palettizer</h1>
       <DropZone filetype="image"/>
       <ProgressBar/>
       <v-btn 

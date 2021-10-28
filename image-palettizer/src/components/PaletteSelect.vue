@@ -2,7 +2,7 @@
     <div class="palette-select">
         <vue-select
         class="palette-chooser"
-        :options="Object.keys(this.$store.state.palettes)"
+        :options="Object.keys(this.$store.state.palettes).reverse()"
         :value="$store.state.palette"
         @input="setPalette"
         :clearable='false'

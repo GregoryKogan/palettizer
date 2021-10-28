@@ -2,6 +2,9 @@
     <div>
         <v-col class="palette-preview">
             <v-row class="color-row" justify="space-around">
+                <div v-if="colors.length == 0">
+                    <h2 class="empty-message">No colors here</h2>
+                </div>
                 <div 
                 v-for="color in colors" :key="color"
                 v-bind:style="styles[color]"
@@ -57,5 +60,9 @@ export default {
         height: 100%;
         border: solid 3px #6272a4;
         border-radius:  10px;
+    }
+    .color-row .empty-message{
+        color: #6272a4;
+        margin-top: 5px;
     }
 </style>

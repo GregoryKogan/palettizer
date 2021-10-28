@@ -15,7 +15,8 @@ export default new Vuex.Store({
     blur: true,
     blurRadius: 3,
 
-    palettes: [],
+    palettes: {},
+    lastAdded: null,
 
     progress: 0,
     status: 'Empty',
@@ -53,6 +54,10 @@ export default new Vuex.Store({
     },
     setBlurRadius(state, value){
       state.blurRadius = value
+    },
+    addPalette(state, palette){
+      state.palettes[palette.name] = palette.colors
+      state.lastAdded = palette.name + Math.floor(Math.random() * 1000);
     },
   },
   actions: {
