@@ -11,8 +11,8 @@
             <v-btn text rounded @click="goToAbout">About</v-btn>
             <v-spacer></v-spacer>
             <v-btn 
-            icon s
-            tyle="position: absolute; left: 50%; transform: translate(-50%, 0)"
+            icon 
+            style="position: absolute; left: 50%; transform: translate(-50%, 0)"
             @click="goToHome"
             >
                 <div class="logo-icon" >
