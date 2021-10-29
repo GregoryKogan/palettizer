@@ -1,5 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import Cookies from 'js-cookie'
+
 
 Vue.use(Vuex)
 
@@ -20,6 +22,9 @@ export default new Vuex.Store({
 
     progress: 0,
     status: 'Empty',
+
+    cookieGranted: false,
+    cookieGotResponse: false,
   },
   mutations: {
     setInputImageFile(state, file){
@@ -31,6 +36,10 @@ export default new Vuex.Store({
     setPalettes(state, palettes){
       state.palettes = palettes
       state.modifications += 1
+
+      if (state.cookieGranted){
+        Cookies.set('userPalettes', JSON.stringify(state.palettes), { expires: 365, SameSite: 'Strict' })
+      }
     },
     setPalette(state, palette){
       state.palette = palette
@@ -59,6 +68,16 @@ export default new Vuex.Store({
     addPalette(state, palette){
       state.palettes[palette.name] = palette.colors
       state.modifications += 1
+
+      if (state.cookieGranted){
+        Cookies.set('userPalettes', JSON.stringify(state.palettes), { expires: 365, SameSite: 'Strict' })
+      }
+    },
+    setCookieGranted(state, value){
+      state.cookieGranted = value
+    },
+    setCookieGotResponse(state, value){
+      state.cookieGotResponse = value
     },
   },
   actions: {

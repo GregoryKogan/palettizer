@@ -4,16 +4,18 @@
     <v-main>
       <router-view/>
     </v-main>
+    <CookieAccept />
   </v-app>
 </template>
 
 <script>
 import { loadPalettes } from "./palettizer";
 import NavBar from "./components/NavBar.vue"
+import CookieAccept from "./components/CookieAccept.vue"
 
 export default {
   name: 'App',
-  components: { NavBar },
+  components: { NavBar, CookieAccept },
   created(){
     document.title = "Image Palettizer"
     loadPalettes()
