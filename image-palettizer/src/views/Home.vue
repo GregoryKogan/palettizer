@@ -57,6 +57,10 @@ export default {
   components: { DropZone, ProgressBar, Settings, PatreonButton },
   data: () => ({
   }),
+  mounted(){
+    if (this.$store.state.inputImage)
+      this.undoPalettizing()
+  },
   methods: {
     processImage(){
       process()
@@ -81,6 +85,17 @@ export default {
       ctx.clearRect(0, 0, canvas.width, canvas.height)
       const loadedImage = new Image()
       loadedImage.src = this.$store.state.inputImage
+      canvas.width = loadedImage.width
+      canvas.height = loadedImage.height
+      const ratio = canvas.width / canvas.height
+      if (ratio > 16 / 9){
+          canvas.style.width = '100%'
+          canvas.style.height = 'auto'
+      }
+      else{
+          canvas.style.width = 'auto'
+          canvas.style.height = '100%'
+      }
       loadedImage.addEventListener('load', function(){
           ctx.drawImage(loadedImage, 0, 0, canvas.width, canvas.height)
       })
