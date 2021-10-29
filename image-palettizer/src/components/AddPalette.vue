@@ -77,7 +77,7 @@ export default {
         paletteName: "MyNewPalette",
     }),
     created(){
-        this.paletteName = "MyPalette-" + (Object.keys(this.$store.state.palettes).length + 1)
+        this.paletteName = "MyPalette-" + Math.floor(Math.random() * 10000)
 
         if (window.innerWidth * 0.45 > 500)
             this.pickerWidth = window.innerWidth * 0.45
@@ -94,7 +94,7 @@ export default {
         },
         addPalette(){
             this.$store.commit('addPalette', {name: this.paletteName, colors: this.selectedColors})
-            this.paletteName = "MyPalette-" + (Object.keys(this.$store.state.palettes).length + 1)
+            this.paletteName = "MyPalette-" + Math.floor(Math.random() * 10000)
             this.selectedColors = []
         }
     }
@@ -108,6 +108,7 @@ export default {
     .add-palette h2{
         margin-bottom: 10px;
         margin-top: 20px;
+        text-align: center;
     }
     .add-palette .picker{
         margin: auto;

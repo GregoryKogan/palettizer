@@ -63,6 +63,6 @@ export default {
     }
     .color-row .empty-message{
         color: #6272a4;
-        margin-top: 5px;
+        margin-top: 6px;
     }
 </style>

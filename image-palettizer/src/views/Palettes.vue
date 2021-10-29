@@ -2,21 +2,25 @@
   <div class="palettes">
     <AddPalette />
     <h2 class="list-header">Your palettes</h2>
+    <PaletteMigration style="margin-bottom: 30px; margin-top: 10px;" />
     <div class="palette-line" v-for="paletteName in paletteNames" :key="paletteName">
       <h3>{{paletteName}}</h3>
-      <PalettePreview class="select-preview" :colors="$store.state.palettes[paletteName]"/>
+      <PalettePreview :colors="$store.state.palettes[paletteName]"/>
     </div>
+    <PatreonButton style="margin-bottom: 20px;" />
   </div>
 </template>
 
 <script>
 import PalettePreview from '../components/PalettePreview.vue'
 import AddPalette from '../components/AddPalette.vue'
+import PaletteMigration from '../components/PaletteMigration.vue'
+import PatreonButton from '../components/PatreonButton.vue'
 
 
 export default {
   name: "Palettes",
-  components: { PalettePreview, AddPalette },
+  components: { PalettePreview, AddPalette, PaletteMigration, PatreonButton },
   data: () => ({
     paletteNames: [],
   }),
@@ -24,12 +28,12 @@ export default {
     this.paletteNames = Object.keys(this.$store.state.palettes).reverse()
   },
   computed: {
-    lastAdded(){
-      return this.$store.state.lastAdded
+    modifications(){
+      return this.$store.state.modifications
     }
   },
   watch: {
-    lastAdded: function() {
+    modifications: function() {
       this.paletteNames = Object.keys(this.$store.state.palettes).reverse()
     }
   }
@@ -46,7 +50,8 @@ export default {
     color: #f8f8f2;
   }
   .palettes .list-header{
-    margin-top: 80px;
+    margin-top: 30px;
+    margin-bottom: 20px;
   }
 
   .palette-line{
