@@ -80,25 +80,25 @@ export default {
     },
     undoPalettizing(){
       this.$store.commit('setStatus', 'Original')
-      const canvas = document.getElementById('main-canvas')
-      const ctx = canvas.getContext('2d')
-      ctx.clearRect(0, 0, canvas.width, canvas.height)
       const loadedImage = new Image()
       loadedImage.src = this.$store.state.inputImage
-      canvas.width = loadedImage.width
-      canvas.height = loadedImage.height
-      const ratio = canvas.width / canvas.height
-      if (ratio > 16 / 9){
-          canvas.style.width = '100%'
-          canvas.style.height = 'auto'
+      loadedImage.onload = function(){
+        const canvas = document.getElementById('main-canvas')
+        const ctx = canvas.getContext('2d')
+        ctx.clearRect(0, 0, canvas.width, canvas.height)
+        canvas.width = loadedImage.width
+        canvas.height = loadedImage.height
+        const ratio = canvas.width / canvas.height
+        if (ratio > 16 / 9){
+            canvas.style.width = '100%'
+            canvas.style.height = 'auto'
+        }
+        else{
+            canvas.style.width = 'auto'
+            canvas.style.height = '100%'
+        }
+        ctx.drawImage(loadedImage, 0, 0, canvas.width, canvas.height)
       }
-      else{
-          canvas.style.width = 'auto'
-          canvas.style.height = '100%'
-      }
-      loadedImage.addEventListener('load', function(){
-          ctx.drawImage(loadedImage, 0, 0, canvas.width, canvas.height)
-      })
     },
   }
 }

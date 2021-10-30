@@ -89,7 +89,7 @@ export default new Vuex.Store({
           context.commit('setInputImage', reader.result)
         };
         reader.onerror = function (error) {
-          console.log('Error: ', error);
+          console.alert('Error: ', error);
         };
       }
   },
