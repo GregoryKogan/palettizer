@@ -139,7 +139,7 @@ class Palettizer{
 
         let factor = sBrightness / rBrightness
         if (this.brightnessSteps)
-            factor = Math.round(factor, 1)
+            factor = Math.round(factor * 10) / 10
         let rr = rColor[0]
         let rg = rColor[1]
         let rb = rColor[2]
