@@ -63,7 +63,9 @@ export default {
             this.active = !this.active
         },
         selectFile(){
-            document.getElementById('file-selector').click()
+            const availableStatuses = ['Original', 'Empty', 'Done!']
+            if (availableStatuses.includes(this.$store.state.status))
+                document.getElementById('file-selector').click()
         },
         onFileSelect(e){
             const data = e.target.files[0]
@@ -72,10 +74,13 @@ export default {
             this.$store.dispatch('updateInputImage', this.file)
         },
         onFileDrop(e){
-            const data = e.dataTransfer.files[0]
-            if (data['type'].startsWith(this.filetype))
-                this.file = data
-            this.$store.dispatch('updateInputImage', this.file)
+            const availableStatuses = ['Original', 'Empty', 'Done!']
+            if (availableStatuses.includes(this.$store.state.status)){
+                const data = e.dataTransfer.files[0]
+                if (data['type'].startsWith(this.filetype))
+                    this.file = data
+                this.$store.dispatch('updateInputImage', this.file)
+            }
             this.toggleActive()
         },
     },
