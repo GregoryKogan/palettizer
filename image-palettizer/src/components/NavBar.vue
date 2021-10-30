@@ -36,16 +36,22 @@ export default {
     data: () => ({}),
     methods: {
         goToAbout(){
-            if (this.$route.name != 'About')
-                this.$router.push('/about')
+            if (this.$route.name != 'About'){
+                const availableStatuses = ['Original', 'Empty', 'Done!']
+                if (availableStatuses.includes(this.$store.state.status))
+                    this.$router.push('/about')
+            }
         },
         goToHome(){
             if (this.$route.name != 'Home')
                 this.$router.push('/')
         },
         goToPalettes(){
-            if (this.$route.name != 'Palettes')
-                this.$router.push('/palettes')
+            if (this.$route.name != 'Palettes'){    
+                const availableStatuses = ['Original', 'Empty', 'Done!']
+                if (availableStatuses.includes(this.$store.state.status))
+                    this.$router.push('/palettes')
+            }
         },
     }
 }
