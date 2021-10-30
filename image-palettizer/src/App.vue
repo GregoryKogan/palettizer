@@ -17,7 +17,7 @@ export default {
   name: 'App',
   components: { NavBar, CookieAccept },
   created(){
-    document.title = "Image Palettizer"
+    document.title = "Palettizer"
     loadPalettes()
   }
 };
