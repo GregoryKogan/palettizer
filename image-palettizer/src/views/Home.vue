@@ -53,8 +53,6 @@ import { process } from "../palettizer";
 export default {
   name: "Home",
   components: { DropZone, ProgressBar, Settings },
-  data: () => ({
-  }),
   mounted(){
     if (this.$store.state.inputImage)
       this.undoPalettizing()

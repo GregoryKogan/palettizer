@@ -65,6 +65,21 @@
       </img-comparison-slider>
       <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem animi deleniti, ut reprehenderit numquam accusamus sequi aperiam, praesentium quidem officiis enim voluptatibus molestias assumenda doloremque minus, suscipit fuga architecto porro adipisci velit ullam culpa. Nulla, praesentium odio? Consectetur natus rerum dolor laboriosam quia eum veritatis illo ipsa, reprehenderit cupiditate optio.</p>
     </div>
+    <div class="section">
+      <h2>Examples</h2>
+      <div class="carousel-cap"></div>
+      <carousel
+      v-on:pageChange="slideChange"
+      class="example-carousel"
+      :perPage="1"
+      :paginationEnabled="false"
+      >
+        <slide v-for="(example, i) in examples" :key="i" class="example-slide">
+          <v-img :src="example.src" class="slide-image" contain></v-img>
+        </slide>
+      </carousel>
+      <span class="slide-description">{{examples[currentIndex].theme}}</span>
+    </div>
     <v-row justify="space-around" style="width: 100%;">
       <PatreonButton style="margin-top: 20px;" />
       <GitHubButton style="margin-top: 20px;" />
@@ -77,12 +92,61 @@
 import PatreonButton from '../components/PatreonButton.vue'
 import GitHubButton from '../components/GitHubButton.vue'
 import PalettePreview from '../components/PalettePreview.vue'
+import { Carousel, Slide } from 'vue-carousel';
 
 export default {
   name: "About",
-  components: { PatreonButton, GitHubButton, PalettePreview },
-  created(){
-    console.log()
+  components: { PatreonButton, GitHubButton, PalettePreview, Carousel, Slide },
+  data: () => ({
+    currentIndex: 0,
+    examples: [
+      { 
+        src: require('../assets/examples/nord-example.jpg'), 
+        desc: 'Only color matching',
+        theme: 'Nord', 
+      },
+      { 
+        src: require('../assets/examples/solarized-example.jpg'), 
+        desc: 'Only color matching',
+        theme: 'Solarized', 
+      },
+      { 
+        src: require('../assets/examples/retrowave-example.jpg'), 
+        desc: 'Only color matching',
+        theme: 'Retrowave', 
+      },
+      { 
+        src: require('../assets/examples/tokyo-night-example.jpg'), 
+        desc: 'Only color matching',
+        theme: 'Tokyo Night', 
+      },
+      { 
+        src: require('../assets/examples/onedark-example.jpg'), 
+        desc: 'Only color matching',
+        theme: 'Onedark', 
+      },
+      { 
+        src: require('../assets/examples/monokai-example.jpg'), 
+        desc: 'Only color matching',
+        theme: 'Monokai', 
+      },
+      { 
+        src: require('../assets/examples/gruvbox-example.jpg'), 
+        desc: 'Only color matching',
+        theme: 'Gruvbox', 
+      },
+      { 
+        src: require('../assets/examples/UP.png'), 
+        desc: 'Only color matching',
+        theme: 'Custom',
+      },
+
+    ],
+  }),
+  methods: {
+    slideChange(i){
+      this.currentIndex = i;
+    },
   }
 }
 </script>
@@ -164,7 +228,7 @@ export default {
     margin-right: auto;
     margin-bottom: 10px;
   }
-  .about .section .example-image .image-name{
+  .about .image-name{
     font-weight: 500;
     font-size: 17px;
     padding-top: 3px;
@@ -177,5 +241,35 @@ export default {
   }
   .about .section .paragraph{
     margin-top: 15px;
+  }
+
+  .about .example-carousel{
+    width: min(100%, 800px);
+    height: calc(max(350px, min(90vw, 800px)) / 16 * 9);
+    margin-left: auto;
+    margin-right: auto;
+    transition: border 200ms ease-in-out;
+  }
+  .about .example-carousel .example-slide{
+    width: 100%;
+  }
+  .about .example-carousel .slide-image{
+    height: calc(max(350px, min(90vw, 800px)) / 16 * 9);
+  }
+  .about .slide-description{
+    display: block;
+    width: 90%;
+    text-align: center;
+    font-size: 17px;
+    margin-top: 5px;
+    margin-bottom: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0px 8px 4px -4px #ff79c6;
+  }
+  .about .carousel-cap{
+    height: 8px;
+    display: block;
+    width: 100%;
   }
 </style>
