@@ -1,7 +1,6 @@
 <template>
   <div class="home">
       <h1>Palettizer</h1>
-      <PatreonButton style="margin-bottom: 20px;"/>
       <DropZone filetype="image"/>
       <ProgressBar/>
       <v-btn 
@@ -49,12 +48,11 @@
 import DropZone from '../components/DropZone.vue';
 import ProgressBar from '../components/ProgressBar.vue'
 import Settings from '../components/Settings.vue'
-import PatreonButton from '../components/PatreonButton.vue'
 import { process } from "../palettizer";
 
 export default {
   name: "Home",
-  components: { DropZone, ProgressBar, Settings, PatreonButton },
+  components: { DropZone, ProgressBar, Settings },
   data: () => ({
   }),
   mounted(){

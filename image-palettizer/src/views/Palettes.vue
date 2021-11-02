@@ -18,7 +18,6 @@
       </v-row>
       <PalettePreview :colors="$store.state.palettes[paletteName]"/>
     </div>
-    <PatreonButton style="margin-bottom: 20px;" />
   </div>
 </template>
 
@@ -26,12 +25,11 @@
 import PalettePreview from '../components/PalettePreview.vue'
 import AddPalette from '../components/AddPalette.vue'
 import PaletteMigration from '../components/PaletteMigration.vue'
-import PatreonButton from '../components/PatreonButton.vue'
 
 
 export default {
   name: "Palettes",
-  components: { PalettePreview, AddPalette, PaletteMigration, PatreonButton },
+  components: { PalettePreview, AddPalette, PaletteMigration },
   data: () => ({
     paletteNames: [],
     defaultPalettes: ["Dracula", "Nord", "Tokyo Night", "Solarized", "Retrowave", "Gruvbox", "Onedark", "Monokai"],
