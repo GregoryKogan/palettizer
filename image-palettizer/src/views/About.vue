@@ -100,47 +100,19 @@ export default {
   data: () => ({
     currentIndex: 0,
     examples: [
-      { 
-        src: require('../assets/examples/nord-example.jpg'), 
-        desc: 'Only color matching',
-        theme: 'Nord', 
-      },
-      { 
-        src: require('../assets/examples/solarized-example.jpg'), 
-        desc: 'Only color matching',
-        theme: 'Solarized', 
-      },
-      { 
-        src: require('../assets/examples/retrowave-example.jpg'), 
-        desc: 'Only color matching',
-        theme: 'Retrowave', 
-      },
-      { 
-        src: require('../assets/examples/tokyo-night-example.jpg'), 
-        desc: 'Only color matching',
-        theme: 'Tokyo Night', 
-      },
-      { 
-        src: require('../assets/examples/onedark-example.jpg'), 
-        desc: 'Only color matching',
-        theme: 'Onedark', 
-      },
-      { 
-        src: require('../assets/examples/monokai-example.jpg'), 
-        desc: 'Only color matching',
-        theme: 'Monokai', 
-      },
-      { 
-        src: require('../assets/examples/gruvbox-example.jpg'), 
-        desc: 'Only color matching',
-        theme: 'Gruvbox', 
-      },
-      { 
-        src: require('../assets/examples/UP.png'), 
-        desc: 'Only color matching',
-        theme: 'Custom',
-      },
-
+      { src: require('../assets/examples/Dracula-Autumn.jpg'), theme: 'Dracula', },
+      { src: require('../assets/examples/Tokyo Night-Tokyo2.jpg'), theme: 'Tokyo Night', },
+      { src: require('../assets/examples/Custom1.jpg'), theme: 'Custom', },
+      { src: require('../assets/examples/Nord1.jpg'), theme: 'Nord', },
+      { src: require('../assets/examples/Gruvbox-red.png'), theme: 'Gruvbox', },
+      { src: require('../assets/examples/Retro2.jpg'), theme: 'Retrowave', },
+      { src: require('../assets/examples/Monokai-Ilu2.png'), theme: 'Monokai', },
+      { src: require('../assets/examples/Tokyo Night-Tokyo.jpg'), theme: 'Tokyo Night', },
+      { src: require('../assets/examples/Custom2.jpg'), theme: 'Custom', },
+      { src: require('../assets/examples/Onedark-wave.jpg'), theme: 'Onedark', },
+      { src: require('../assets/examples/Retro1.jpg'), theme: 'Retrowave', },
+      { src: require('../assets/examples/Solarized-Ilu1.jpg'), theme: 'Solarized', },
+      { src: require('../assets/examples/Tokyo Night-Iceberg.jpg'), theme: 'Tokyo Night', },
     ],
   }),
   methods: {
