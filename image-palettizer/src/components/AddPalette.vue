@@ -93,9 +93,11 @@ export default {
             this.selectedColors = []
         },
         addPalette(){
-            this.$store.commit('addPalette', {name: this.paletteName, colors: this.selectedColors})
-            this.paletteName = "MyPalette-" + Math.floor(Math.random() * 10000)
-            this.selectedColors = []
+            if (!(this.paletteName in this.$store.state.palettes)){
+                this.$store.commit('addPalette', {name: this.paletteName, colors: this.selectedColors})
+                this.paletteName = "MyPalette-" + Math.floor(Math.random() * 10000)
+                this.selectedColors = []
+            }
         }
     }
 }

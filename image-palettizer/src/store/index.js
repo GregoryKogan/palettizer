@@ -66,11 +66,13 @@ export default new Vuex.Store({
       state.blurRadius = value
     },
     addPalette(state, palette){
-      state.palettes[palette.name] = palette.colors
-      state.modifications += 1
+      if (!(palette.name in state.palettes)){
+        state.palettes[palette.name] = palette.colors
+        state.modifications += 1
 
-      if (state.cookieGranted){
-        Cookies.set('userPalettes', JSON.stringify(state.palettes), { expires: 365, SameSite: 'Strict' })
+        if (state.cookieGranted){
+          Cookies.set('userPalettes', JSON.stringify(state.palettes), { expires: 365, SameSite: 'Strict' })
+        }
       }
     },
     setCookieGranted(state, value){

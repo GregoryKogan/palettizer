@@ -33,7 +33,15 @@ export default {
     name: 'PaletteMigration',
     methods: {
         exportPalettes(){
-            const palettesData = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(this.$store.state.palettes))
+            const defaultPalettes = ["Dracula", "Nord", "Tokyo Night", "Solarized", "Retrowave", "Gruvbox", "Onedark", "Monokai"]
+            let userPalettes = {}
+            const palettesKeys = Object.keys(this.$store.state.palettes)
+            for (let i = 0; i < palettesKeys.length; ++i){
+                if (!defaultPalettes.includes(palettesKeys[i])){
+                    userPalettes[palettesKeys[i]] = this.$store.state.palettes[palettesKeys[i]]
+                }
+            }
+            const palettesData = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(userPalettes))
             let a = document.createElement('a')
             a.href = palettesData
             a.download = "Palettes.json"
@@ -49,7 +57,10 @@ export default {
             if (data['type'].endsWith('json')){
                 const parsedData = await new Response(data).text()
                 const importedPalettes = JSON.parse(parsedData)
-                this.$store.commit('setPalettes', importedPalettes)
+                const importKeys = Object.keys(importedPalettes)
+                for (let i = 0; i < importKeys.length; ++i){
+                    this.$store.commit('addPalette', {name: importKeys[i], colors: importedPalettes[importKeys[i]]})
+                }
                 this.$store.commit('setPalette', Object.keys(this.$store.state.palettes).reverse()[0])
             }
         },
