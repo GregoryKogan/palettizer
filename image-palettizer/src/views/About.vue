@@ -230,11 +230,11 @@ export default {
   }
   .about .slide-description{
     display: block;
-    width: 90%;
+    width: min(100%, 800px);
     text-align: center;
     font-size: 17px;
     margin-top: 5px;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
     margin-left: auto;
     margin-right: auto;
     box-shadow: 0px 8px 4px -4px #ff79c6;
