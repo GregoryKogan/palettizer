@@ -3,7 +3,26 @@
     <h1 style="margin-top: 10px; font-size: 40px;">Palettizer</h1>
     <div class="section">
       <h2>Why?</h2>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Non praesentium expedita voluptas nulla recusandae dicta cumque hic reprehenderit tenetur culpa sint qui aliquid quis repudiandae, omnis odio aperiam repellat fugiat, quae delectus aliquam quam veritatis laborum. Nulla fugit cum, iste fugiat perspiciatis, voluptate, neque vel a ut itaque dolore explicabo dolorem alias recusandae officia accusantium quidem earum suscipit sint! Et voluptatem laborum suscipit, excepturi asperiores eum? Earum a assumenda perferendis!</p>
+      <p>
+        This summer I finally fully switched to GNU/Linux as my desktop OS. 
+        <span>(</span>I use Arch btw<span>)</span>
+        I was fascinated by customizeablity of it. I set goal for myself to build my own
+        personalised system with functionality, feel and look exactly as I like it.
+        I tried many Linux distributions, window managers and color themes, but at the moment
+        of writing this I'm incredibly happy with my current setup! All my configuration and
+        customization files are on my 
+        <a href="https://github.com/GregoryKogan/Linux-Configs">Linux-Configs</a> repository.
+        All my system is a combination of <a href="https://draculatheme.com">Dracula</a> theme
+        and <a href="https://www.nordtheme.com">Nord</a> theme. I'm kind of a perfectionist
+        myself, I can't put up with any element on my screen being out of order. Wallpaper is 
+        usually the biggest element on your screen. As it turned out it's not that easy to find 
+        wallpapers in correct color theme. Browsing 
+        <a href="https://www.reddit.com/r/unixporn/">r/Unixporn</a>
+        I found out about <a href="https://ign.schrodinger-hat.it/">ImageGoNord</a> utility.
+        It's purpose is exactly what I wanted at that moment. But results were nothing but 
+        pure disappointment. I belived, that I can create a better alternative. This is how 
+        the 'Palettizer' project has began. 
+      </p>
       <v-img 
       src="../assets/logo.png" 
       contain
@@ -16,18 +35,63 @@
       <v-img src="../assets/original.jpg" class="example-image" contain max-width="800">
         <span class="image-name">Original image</span>
       </v-img>
-      <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aspernatur doloribus atque explicabo accusantium et tempora. Velit nobis sit tempore in.</p>
+      <a href="https://i09.kanobu.ru/r/98337ae40ef114cf07c92cac8dbb9688/1040x700/u.kanobu.ru/editor/images/51/c48787a0-4259-47a3-b32a-ddb4f311c753.jpg">Source image</a>
+      <p>
+        Let's take this image as an example and walk through all steps that my algorithm takes
+        to convert any image to any color theme. In this example Dracula palette is going to be used.
+      </p>
       <h3 class="paragraph">1. Color matching</h3>
       <v-img src="../assets/color-matched.jpg" class="example-image" contain max-width="800"></v-img>
       <span style="font-weight: bold;">Dracula palette</span>
       <PalettePreview :colors="this.$store.state.palettes['Dracula']" style="margin-bottom: 5px;"/>
-      <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aperiam sed totam, est cum quam ipsum, libero repellat quibusdam enim ex, nemo labore non! Temporibus aspernatur recusandae cupiditate dolor aperiam iusto distinctio consequatur adipisci earum laudantium ut mollitia, unde totam voluptatum maiores! Maiores unde dolore harum esse ratione facere accusantium, molestias beatae voluptatem quam pariatur! Corrupti assumenda distinctio a omnis, impedit cupiditate quia? Laborum, modi. In voluptatibus optio aliquam eius voluptate?</p>
+      <p>
+        For every pixel in the image, algorithm cycles through all colors in chosen palette 
+        and finds the closest color to original color of the pixel. Then the color of the 
+        pixel changes to that one. There're variety of ways to calculate distance between two colors. 
+        By default my algorithm uses linear color distance. If original pixel color and 
+        color from the palette in RGB are
+        <vue-mathjax formula="$$\small{(r_1,g_1,b_1)\text{ - original},(r_2,g_2,b_2)\text{ - palette}}$$"></vue-mathjax>  
+        then color distance of those is
+        <vue-mathjax formula="$$\small{D=|r_1-r_2|+|g_1-g_2|+|b_1-b_2|}$$"></vue-mathjax>
+        At this step image gets cartoonish rough look. And that's actually the only 
+        transformation that <a href="https://ign.schrodinger-hat.it/">ImageGoNord</a>
+        does to images. In some cases this can be desired result, but Palettizer 
+        gives you ability to go further.
+      </p>
       <h3 class="paragraph">2. Blurring</h3>
       <v-img src="../assets/blur.jpg" class="example-image" contain max-width="800"></v-img>
-      <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tempore dolore odio voluptatum numquam consectetur itaque repudiandae, alias a eos architecto.</p>
+      <p>
+        You can observe shap looking pixels in several areas. Unfortunately, it is mostly inevitable.
+        Techically, we just compressed our image and now it uses only colors from the palette instead
+        of 16 million colors of RGB color space. But this problem can be fixed easily with blur.
+        Blurring helps to smooth out transitions between areas with different colors. 
+        Palettizer uses <a href="https://github.com/flozz/StackBlur">StackBlur</a> library
+        for blurring. It gives results very similar to gaussian blur, but runs significantly faster.
+      </p>
       <h3 class="paragraph">3. Tweaking brightness</h3>
       <v-img src="../assets/final-result.jpg" class="example-image" contain max-width="800"></v-img>
-      <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Delectus magnam officiis rerum maiores consequatur ab, laudantium quos recusandae corrupti laborum? Quidem facere, fugit labore laborum consequuntur numquam soluta iste earum nesciunt necessitatibus fugiat sit ipsa ea debitis similique illo assumenda expedita. Placeat ullam enim, dignissimos commodi necessitatibus recusandae repudiandae voluptatem iste iusto asperiores, minima molestiae nisi qui perspiciatis sequi maxime repellendus dolorem dolorum quia, explicabo officia nam tempore rerum. Minus.</p>
+      <p>
+        This is very important step, the most magical in my opinion. My algorithm loops through
+        pixels of image from previous step and original image simultaneously and counts their
+        brightness. The most common way to calculate brightness of a RGB pixel is
+        <vue-mathjax formula="$$\small{B=\frac{r+g+b}{3}}$$"></vue-mathjax>
+        But it is not appropriate for this application. Humans do not perecieve
+        brightness like this. Palettizer uses formula optimized for human sight
+        <vue-mathjax formula="$$\small{B=r*0.2126+g*0.7152+b*0.0722}$$"></vue-mathjax>
+        When original brightness and current brightness are calculated we can use these values
+        to alter color of current pixel so it's brightness is exactly the same as brightness
+        of it's origin pixel in the input image. 
+        <vue-mathjax formula="$$\small{B_1\text{ - original}, B_2\text{ - current}}$$"></vue-mathjax>
+        We need to calculate their difference, this value will be used as a
+        multiplication factor for brightness tweaking
+        <vue-mathjax formula="$$\small{F=\frac{B_1}{B_2}}$$"></vue-mathjax>
+        Now we can calculate new RGB values for our pixel
+        <vue-mathjax formula="$$\small{(r_n,g_n,b_n)\text{ - new values},(r_o,g_o,b_o)\text{ - old values}}$$"></vue-mathjax>
+        <vue-mathjax formula="$$\small{r_n=\text{min}(255,r_o*F)}$$"></vue-mathjax>
+        <vue-mathjax formula="$$\small{g_n=\text{min}(255,g_o*F)}$$"></vue-mathjax>
+        <vue-mathjax formula="$$\small{b_n=\text{min}(255,b_o*F)}$$"></vue-mathjax>
+        We need to clip max possible value at 255, because it's maximal possible value in RGB.
+      </p>
     </div>
     <div class="section">
       <h2>Options</h2>
@@ -41,7 +105,13 @@
           <figcaption>Stepping</figcaption>
         </figure>
       </img-comparison-slider>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem animi deleniti, ut reprehenderit numquam accusamus sequi aperiam, praesentium quidem officiis enim voluptatibus molestias assumenda doloremque minus, suscipit fuga architecto porro adipisci velit ullam culpa. Nulla, praesentium odio? Consectetur natus rerum dolor laboriosam quia eum veritatis illo ipsa, reprehenderit cupiditate optio.</p>
+      <p>
+        Brightness stepping gives image cartoonish look. This effect is achieved by
+        rounding brightness multiplication factor to first decimal place.
+        After that resulting pixel brightness is not always the same as in original.
+        It becomes only approximation of it, creating this staircase like pattern.
+        <vue-mathjax formula="$$\small{F=\frac{\text{round}(F * 10)}{10}}$$"></vue-mathjax>
+      </p>
       <img-comparison-slider>
         <figure slot="first" class="fig-left">
           <img src="../assets/color-matched.jpg" width="100%"/>
@@ -52,7 +122,13 @@
           <figcaption>Quadratic</figcaption>
         </figure>
       </img-comparison-slider>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem animi deleniti, ut reprehenderit numquam accusamus sequi aperiam, praesentium quidem officiis enim voluptatibus molestias assumenda doloremque minus, suscipit fuga architecto porro adipisci velit ullam culpa. Nulla, praesentium odio? Consectetur natus rerum dolor laboriosam quia eum veritatis illo ipsa, reprehenderit cupiditate optio.</p>
+      <p>
+        As I mentioned above, there multiple ways of calculating distance between two colors.
+        Although by default Palettizer uses linear formula, there is an option to use
+        quadratic formula. This will change colors in some areas in the image.
+        <vue-mathjax formula="$$\small{D_L=|r_1-r_2|+|g_1-g_2|+|b_1-b_2|}$$"></vue-mathjax>
+        <vue-mathjax formula="$$\small{D_Q=\sqrt{(r_1-r_2)^2+(g_1-g_2)^2+(b_1-b_2)^2}}$$"></vue-mathjax>
+      </p>
       <img-comparison-slider>
         <figure slot="first" class="fig-left">
           <img src="../assets/no-blur.jpg" width="100%"/>
@@ -63,7 +139,11 @@
           <figcaption>Blur 60px</figcaption>
         </figure>
       </img-comparison-slider>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem animi deleniti, ut reprehenderit numquam accusamus sequi aperiam, praesentium quidem officiis enim voluptatibus molestias assumenda doloremque minus, suscipit fuga architecto porro adipisci velit ullam culpa. Nulla, praesentium odio? Consectetur natus rerum dolor laboriosam quia eum veritatis illo ipsa, reprehenderit cupiditate optio.</p>
+      <p>
+        Blur radius controls amount of applied blur. The more blur, the less 
+        sharp pixels there are. If brightness tweaking is on, blur won't affect on
+        detalization, but too much blur may cause loss of color.
+      </p>
     </div>
     <div class="section">
       <h2>Examples</h2>
@@ -93,10 +173,18 @@ import PatreonButton from '../components/PatreonButton.vue'
 import GitHubButton from '../components/GitHubButton.vue'
 import PalettePreview from '../components/PalettePreview.vue'
 import { Carousel, Slide } from 'vue-carousel';
+import {VueMathjax} from 'vue-mathjax'
 
 export default {
   name: "About",
-  components: { PatreonButton, GitHubButton, PalettePreview, Carousel, Slide },
+  components: { 
+    PatreonButton, 
+    GitHubButton, 
+    PalettePreview, 
+    Carousel, 
+    Slide,
+    'vue-mathjax': VueMathjax,
+  },
   data: () => ({
     currentIndex: 0,
     examples: [
@@ -119,7 +207,7 @@ export default {
     slideChange(i){
       this.currentIndex = i;
     },
-  }
+  },
 }
 </script>
 
@@ -243,5 +331,17 @@ export default {
     height: 8px;
     display: block;
     width: 100%;
+  }
+
+  .about .section a {
+    color: #ff79c6;
+    text-decoration: none;
+  }
+  .about .section a:hover{
+    text-decoration: underline;
+  }
+  .about .section a:active{
+    color: #8be9fd;
+    text-decoration: underline;
   }
 </style>
