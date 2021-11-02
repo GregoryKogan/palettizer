@@ -66,7 +66,7 @@ export default new Vuex.Store({
       state.blurRadius = value
     },
     addPalette(state, palette){
-      if (!(palette.name in state.palettes)){
+      if (!(palette.name in state.palettes) && Object.keys(state.palettes).length < 100){
         state.palettes[palette.name] = palette.colors
         state.modifications += 1
 
