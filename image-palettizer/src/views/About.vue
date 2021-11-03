@@ -62,7 +62,7 @@
         transformation that 
         <a href="https://ign.schrodinger-hat.it/">ImageGoNord</a>
         does to the images. In some cases, this can be 
-        the desired result, but Palettizer gives you an ability to go further.
+        the desired result, but <b>Palettizer</b> gives you an ability to go further.
       </p>
       <h3 class="paragraph">2. Blurring</h3>
       <v-img src="../assets/blur.jpg" class="example-image" contain max-width="800"></v-img>
@@ -71,7 +71,7 @@
         in some cases. Technically, we just compressed our image because now it uses only (!) 
         colors from the palette instead of 16 million colors of RGB color space. But this 
         problem can be fixed with a little bit of blurring as it helps to smooth out 
-        transitions between different color areas. Palettizer uses the 
+        transitions between different color areas. <b>Palettizer</b> uses the 
         <a href="https://github.com/flozz/StackBlur">StackBlur</a> library 
         to do that. The tool gives results very similar to Gaussian blur but runs significantly 
         faster.
@@ -85,7 +85,7 @@
         for an RGB pixel is
         <vue-mathjax formula="$$\small{B=\frac{r+g+b}{3}}$$"></vue-mathjax>
         But it is not appropriate in this case. Humans do not perceive brightness 
-        like the computer does. Palettizer uses a formula optimized for human sight.
+        like the computer does. <b>Palettizer</b> uses a formula optimized for human sight.
         <vue-mathjax formula="$$\small{B=r*0.2126+g*0.7152+b*0.0722}$$"></vue-mathjax>
         When original brightness and current brightness are calculated we can use these 
         values to alter the color of the current pixel so its brightness is exactly 
@@ -104,6 +104,7 @@
     </div>
     <div class="section">
       <h2>Options</h2>
+      <div class="call-to-action">Move the line to see the difference</div>
       <img-comparison-slider>
         <figure slot="first" class="fig-left">
           <img src="../assets/bs-pre.png" width="100%"/>
@@ -124,7 +125,7 @@
       </p>
       <img-comparison-slider>
         <figure slot="first" class="fig-left">
-          <img src="../assets/color-matched.jpg" width="100%"/>
+          <img src="../assets/lcd.jpg" width="100%"/>
           <figcaption>Linear</figcaption>
         </figure>
         <figure slot="second" class="fig-right">
@@ -134,7 +135,7 @@
       </img-comparison-slider>
       <p>
         As I mentioned above, there are multiple ways of calculating the distance 
-        between two colors. Although by default Palettizer uses linear formula, there 
+        between two colors. Although by default <b>Palettizer</b> uses linear formula, there 
         is an option to use the quadratic formula. It will change colors in some areas 
         in the image.
         <vue-mathjax formula="$$\small{D_L=|r_1-r_2|+|g_1-g_2|+|b_1-b_2|}$$"></vue-mathjax>
@@ -159,6 +160,7 @@
     </div>
     <div class="section">
       <h2>Examples</h2>
+      <div class="call-to-action">Swipe to see more examples!</div>
       <div class="carousel-cap"></div>
       <carousel
       v-on:pageChange="slideChange"
@@ -237,9 +239,9 @@ export default {
 
   .about img-comparison-slider {
     --divider-width: 2px;
-    --divider-color: #282a36;
+    --divider-color: #ff79c6;
     --default-handle-opacity: 1;
-    --default-handle-color: #282a36;
+    --default-handle-color: #ff79c6;
     --divider-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
     display: block;
     width: min(800px, 100%);
@@ -343,6 +345,15 @@ export default {
     height: 8px;
     display: block;
     width: 100%;
+  }
+
+  .call-to-action{
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    color: #6272a4;
+    font-weight: bold;
+    font-size: 18px;
   }
 
   .about .section a {
