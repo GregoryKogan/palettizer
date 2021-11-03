@@ -1,10 +1,12 @@
 <template>
   <div class="about">
-    <h1 style="margin-top: 10px; font-size: 40px;">Palettizer</h1>
-    <div class="block-spacer spacer-tdl"></div>
+    <div class="about-header">
+      <h1>Palettizer</h1>
+    </div>
+    <BlockSpacer type="tdl"/>
     <div class="section light-section">
       <h2>Why?</h2>
-      <p>
+      <p class="p-text">
         This summer I fully switched to GNU/Linux as my desktop OS. 
         <span>(</span>I use Arch btw<span>)</span>
         I was fascinated by its customizability. I set a goal for myself to build a 
@@ -35,14 +37,14 @@
       style="width: 40%; margin-left: auto; margin-right: auto; margin-bottom: 20px;"
       ></v-img>
     </div>
-    <div class="block-spacer spacer-bld"></div>
+    <BlockSpacer type="bld"/>
     <div class="section dark-section">
       <h2>How it works?</h2>
       <v-img src="../assets/original.jpg" class="example-image" contain max-width="800">
         <span class="image-name">Original image</span>
       </v-img>
       <a href="https://i09.kanobu.ru/r/98337ae40ef114cf07c92cac8dbb9688/1040x700/u.kanobu.ru/editor/images/51/c48787a0-4259-47a3-b32a-ddb4f311c753.jpg">Source image</a>
-      <p>
+      <p class="p-text">
         Let's take this image as an example and walk through the steps my algorithm 
         uses to convert any image to a particular color theme. In this example, 
         I will use the Dracula palette.
@@ -51,7 +53,7 @@
       <v-img src="../assets/color-matched.jpg" class="example-image" contain max-width="800"></v-img>
       <span style="font-weight: bold;">Dracula palette</span>
       <PalettePreview :colors="this.$store.state.palettes['Dracula']" style="margin-bottom: 5px;"/>
-      <p>
+      <p class="p-text">
         For every pixel in the image, the algorithm cycles through all colors in of the 
         chosen palette and changes the colors of pixels to the closest ones from the palette. 
         There are various ways to calculate the distance between two colors. By default, 
@@ -68,7 +70,7 @@
       </p>
       <h3 class="paragraph">2. Blurring</h3>
       <v-img src="../assets/blur.jpg" class="example-image" contain max-width="800"></v-img>
-      <p>
+      <p class="p-text">
         You can see sharp-looking pixels in several areas. Unfortunately, it is inevitable 
         in some cases. Technically, we just compressed our image because now it uses only (!) 
         colors from the palette instead of 16 million colors of RGB color space. But this 
@@ -80,7 +82,7 @@
       </p>
       <h3 class="paragraph">3. Tweaking brightness</h3>
       <v-img src="../assets/final-result.jpg" class="example-image" contain max-width="800"></v-img>
-      <p>
+      <p class="p-text">
         This is an extremely important step, somehow magical in my opinion. My algorithm 
         loops through pixels of the image from the previous step and original image 
         simultaneously and calculates their brightness. The most common way to do that 
@@ -104,7 +106,7 @@
         We need to clip max possible value at 255, because it's maximal possible value in RGB.
       </p>
     </div>
-    <div class="block-spacer spacer-tdl"></div>
+    <BlockSpacer type="tdl"/>
     <div class="section light-section">
       <h2>Options</h2>
       <div class="call-to-action">Move the line to see the difference</div>
@@ -118,7 +120,7 @@
           <figcaption>Stepping</figcaption>
         </figure>
       </img-comparison-slider>
-      <p>
+      <p class="p-text">
         Brightness stepping gives the image a cartoonish look. This effect is 
         achieved by rounding the brightness multiplication factor to the first 
         decimal. After that the resulting pixel brightness is not always the same 
@@ -136,7 +138,7 @@
           <figcaption>Quadratic</figcaption>
         </figure>
       </img-comparison-slider>
-      <p>
+      <p class="p-text">
         As I mentioned above, there are multiple ways of calculating the distance 
         between two colors. Although by default <b>Palettizer</b> uses linear formula, there 
         is an option to use the quadratic formula. It will change colors in some areas 
@@ -154,14 +156,14 @@
           <figcaption>Blur 60px</figcaption>
         </figure>
       </img-comparison-slider>
-      <p>
+      <p class="p-text">
         Blur radius controls the amount of applied blur. The more you blur it, 
         the smaller the number of sharp pixels. If brightness tweaking is on, 
         blur won't affect the detalization, but too much blur may cause 
         loss of color.
       </p>
     </div>
-    <div class="block-spacer spacer-bld"></div>
+    <BlockSpacer type="bld"/>
     <div class="section dark-section">
       <h2>Examples</h2>
       <div class="call-to-action">Swipe to see more examples!</div>
@@ -178,12 +180,12 @@
       </carousel>
       <span class="slide-description">{{examples[currentIndex].theme}}</span>
     </div>
-    <div class="block-spacer spacer-tdl"></div>
+    <BlockSpacer type="tdl"/>
     <v-row justify="space-around" style="width: 100%; background-color: #44475a;">
       <PatreonButton style="margin-top: 20px;" />
       <GitHubButton style="margin-top: 20px;" />
     </v-row>
-    <div style="height: 30px; width: 100%; background-color: #44475a;"></div>
+    <div style="height: 50px; width: 100%; background-color: #44475a;"></div>
   </div>
 </template>
 
@@ -191,6 +193,7 @@
 import PatreonButton from '../components/PatreonButton.vue'
 import GitHubButton from '../components/GitHubButton.vue'
 import PalettePreview from '../components/PalettePreview.vue'
+import BlockSpacer from '../components/BlockSpacer.vue'
 import { Carousel, Slide } from 'vue-carousel';
 import {VueMathjax} from 'vue-mathjax'
 
@@ -200,6 +203,7 @@ export default {
     PatreonButton, 
     GitHubButton, 
     PalettePreview, 
+    BlockSpacer,
     Carousel, 
     Slide,
     'vue-mathjax': VueMathjax,
@@ -231,34 +235,12 @@ export default {
 </script>
 
 <style>
-  .block-spacer{
-    aspect-ratio: 960/250;
-    width: 100vw;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-  }
-
-  .spacer-bdl{
-    background-image: url('../assets/graphics/bottom-dark-light.svg');
-  }
-  .spacer-bld{
-    background-image: url('../assets/graphics/bottom-light-dark.svg');
-  }
-  .spacer-tdl{
-    background-image: url('../assets/graphics/top-dark-light.svg');
-  }
-  .spacer-tld{
-    background-image: url('../assets/graphics/top-light-dark.svg');
-  }
-
   .about {
     margin: auto;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: #282a36;
     color: #f8f8f2;
   }
 
@@ -317,16 +299,28 @@ export default {
     padding-right: 3px;
   }
 
+  .about .about-header{
+    padding-top: 10px;
+    width: 100%;
+    text-align: center; 
+    font-size: 20px;
+    background-image: url('../assets/graphics/background.svg');
+    background-position: top;
+    background-repeat: repeat;
+  }
+
   .about .section{
     width: 100%;
-    padding-left: 5%;
-    padding-right: 5%;
+    padding-left: max(5%, 50vw - 600px);
+    padding-right: max(5%, 50vw - 600px);
   }
   .about .light-section{
     background-color: #44475a;
   }
   .about .dark-section{
-    background-color: #282a36;
+    background-image: url('../assets/graphics/background.svg');
+    background-position: top;
+    background-repeat: repeat;
   }
   .about .section h2 {
     margin-right: auto;

@@ -105,7 +105,12 @@ export default {
 
 <style>
     .add-palette{
-        width: 90%;
+        width: 100%;
+        padding-left: 5%;
+        padding-right: 5%;
+        background-image: url('../assets/graphics/background.svg');
+        background-position: top;
+        background-repeat: repeat;
     }
     .add-palette h2{
         margin-bottom: 10px;

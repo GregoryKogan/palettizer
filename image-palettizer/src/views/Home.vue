@@ -1,46 +1,47 @@
 <template>
   <div class="home">
-      <h1>Palettizer</h1>
-      <DropZone filetype="image"/>
-      <ProgressBar/>
+    <h1>Palettizer</h1>
+    <DropZone filetype="image"/>
+    <ProgressBar/>
+    <v-btn 
+    @click="processImage"
+    v-if="this.$store.state.status == 'Original'"
+    color='#50fa7b'
+    light
+    large
+    rounded
+    style="margin-top: 20px;"
+    >
+      Process
+    </v-btn>
+    <v-row v-if="this.$store.state.status == 'Done!'" style="margin-top: 20px; width: min(90vw, 1200px);">
+      <v-spacer></v-spacer>
       <v-btn 
-      @click="processImage"
-      v-if="this.$store.state.status == 'Original'"
-      color='#50fa7b'
+      @click="downloadImage"
+      color='#8be9fd'
       light
       large
       rounded
-      style="margin-top: 20px;"
+      style="width: 120px;"
       >
-        Process
+        Download
       </v-btn>
-      <v-row v-if="this.$store.state.status == 'Done!'" style="margin-top: 20px; width: 90vw;">
-        <v-spacer></v-spacer>
-        <v-btn 
-        @click="downloadImage"
-        color='#8be9fd'
-        light
-        large
-        rounded
-        style="width: 120px;"
-        >
-          Download
-        </v-btn>
-        <v-spacer></v-spacer>
-        <v-btn 
-        @click="undoPalettizing"
-        color='#ffb86c'
-        light
-        large
-        rounded
-        style="width: 120px;"
+      <v-spacer></v-spacer>
+      <v-btn 
+      @click="undoPalettizing"
+      color='#ffb86c'
+      light
+      large
+      rounded
+      style="width: 120px;"
 
-        >
-          Undo
-        </v-btn>
-        <v-spacer></v-spacer>
-      </v-row>
-      <Settings />
+      >
+        Undo
+      </v-btn>
+      <v-spacer></v-spacer>
+    </v-row>
+    <Settings />
+    <BlockSpacer type="tdl" />
   </div>
 </template>
 
@@ -48,11 +49,12 @@
 import DropZone from '../components/DropZone.vue';
 import ProgressBar from '../components/ProgressBar.vue'
 import Settings from '../components/Settings.vue'
+import BlockSpacer from '../components/BlockSpacer.vue'
 import { process } from "../palettizer";
 
 export default {
   name: "Home",
-  components: { DropZone, ProgressBar, Settings },
+  components: { DropZone, ProgressBar, Settings, BlockSpacer },
   mounted(){
     if (this.$store.state.inputImage)
       this.undoPalettizing()
@@ -101,17 +103,19 @@ export default {
 </script>
 
 <style>
-    .home {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        background-color: #282a36;
-        color: #f8f8f2;
-    }
-    .home h1 {
-        font-size: 40px;
-        margin-bottom: 10px;
-        margin-top: 10px;
-    }
+  .home {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #f8f8f2;
+    background-image: url('../assets/graphics/background.svg');
+    background-position: top;
+    background-repeat: repeat;
+  }
+  .home h1 {
+    font-size: 40px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+  }
 </style> 

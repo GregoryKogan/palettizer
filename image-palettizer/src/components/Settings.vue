@@ -115,7 +115,7 @@ export default {
 <style>
     .settings {
         margin-top: 20px;
-        width: 90vw;
+        width: min(90vw, 1200px);
     }
     .settings .switch-label{
         margin-top: auto; 

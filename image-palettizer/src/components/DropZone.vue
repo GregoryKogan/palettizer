@@ -107,7 +107,7 @@ export default {
         color: #f8f8f2;
         background-color: #bd93f9;
         transition: 0.3 ease all;
-        border-radius: 10px;
+        border-radius: 8px;
     }
     .drop-zone .thubnail{
         width: 100%;
