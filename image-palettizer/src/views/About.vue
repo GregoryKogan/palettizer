@@ -4,24 +4,28 @@
     <div class="section">
       <h2>Why?</h2>
       <p>
-        This summer I finally fully switched to GNU/Linux as my desktop OS. 
+        This summer I fully switched to GNU/Linux as my desktop OS. 
         <span>(</span>I use Arch btw<span>)</span>
-        I was fascinated by customizeablity of it. I set goal for myself to build my own
-        personalised system with functionality, feel and look exactly as I like it.
-        I tried many Linux distributions, window managers and color themes, but at the moment
-        of writing this I'm incredibly happy with my current setup! All my configuration and
-        customization files are on my 
-        <a href="https://github.com/GregoryKogan/Linux-Configs">Linux-Configs</a> repository.
-        All my system is a combination of <a href="https://draculatheme.com">Dracula</a> theme
-        and <a href="https://www.nordtheme.com">Nord</a> theme. I'm kind of a perfectionist
-        myself, I can't put up with any element on my screen being out of order. Wallpaper is 
-        usually the biggest element on your screen. As it turned out it's not that easy to find 
-        wallpapers in correct color theme. Browsing 
-        <a href="https://www.reddit.com/r/unixporn/">r/Unixporn</a>
-        I found out about <a href="https://ign.schrodinger-hat.it/">ImageGoNord</a> utility.
-        It's purpose is exactly what I wanted at that moment. But results were nothing but 
-        pure disappointment. I belived, that I can create a better alternative. This is how 
-        the 'Palettizer' project has began. 
+        I was fascinated by its customizability. I set a goal for myself to build a 
+        system that would function, feel, and look exactly the way I like it. I'm kind 
+        of a perfectionist myself, I can't put up with any element on my screen being 
+        out of order. I tried many Linux distributions, window managers, and color 
+        themes, but nothing satisfied me. Wallpaper is usually the biggest element 
+        on your screen. Turnes out, it's not easy to find wallpapers in the color 
+        theme I need. Browsing 
+        <a href="https://www.reddit.com/r/unixporn/">r/Unixporn</a>, I found out 
+        about <a href="https://ign.schrodinger-hat.it/">ImageGoNord</a> utility. 
+        Its purpose is exactly what I needed, but the results were a pure 
+        disappointment. I believed, that I can create a better alternative. 
+        This is how the <b>Palettizer</b> project has begun.
+        <br>
+        The <b>Palettizer</b> helped me put my whole system into a combination of the 
+        <a href="https://draculatheme.com">Dracula</a> and the 
+        <a href="https://www.nordtheme.com">Nord</a> themes. All my configuration and customization files 
+        are on my
+        <a href="https://github.com/GregoryKogan/Linux-Configs">Linux-Configs</a>
+        repository. At the moment I'm incredibly happy with 
+        my current setup!
       </p>
       <v-img 
       src="../assets/logo.png" 
@@ -37,53 +41,58 @@
       </v-img>
       <a href="https://i09.kanobu.ru/r/98337ae40ef114cf07c92cac8dbb9688/1040x700/u.kanobu.ru/editor/images/51/c48787a0-4259-47a3-b32a-ddb4f311c753.jpg">Source image</a>
       <p>
-        Let's take this image as an example and walk through all steps that my algorithm takes
-        to convert any image to any color theme. In this example Dracula palette is going to be used.
+        Let's take this image as an example and walk through the steps my algorithm 
+        uses to convert any image to a particular color theme. In this example, 
+        I will use the Dracula palette.
       </p>
       <h3 class="paragraph">1. Color matching</h3>
       <v-img src="../assets/color-matched.jpg" class="example-image" contain max-width="800"></v-img>
       <span style="font-weight: bold;">Dracula palette</span>
       <PalettePreview :colors="this.$store.state.palettes['Dracula']" style="margin-bottom: 5px;"/>
       <p>
-        For every pixel in the image, algorithm cycles through all colors in chosen palette 
-        and finds the closest color to original color of the pixel. Then the color of the 
-        pixel changes to that one. There're variety of ways to calculate distance between two colors. 
-        By default my algorithm uses linear color distance. If original pixel color and 
-        color from the palette in RGB are
+        For every pixel in the image, the algorithm cycles through all colors in of the 
+        chosen palette and changes the colors of pixels to the closest ones from the palette. 
+        There are various ways to calculate the distance between two colors. By default, 
+        my algorithm uses linear color distance. If the original pixel color and color 
+        from the palette in RGB are
         <vue-mathjax formula="$$\small{(r_1,g_1,b_1)\text{ - original},(r_2,g_2,b_2)\text{ - palette}}$$"></vue-mathjax>  
-        then color distance of those is
+        then the distance between the colors is
         <vue-mathjax formula="$$\small{D=|r_1-r_2|+|g_1-g_2|+|b_1-b_2|}$$"></vue-mathjax>
-        At this step image gets cartoonish rough look. And that's actually the only 
-        transformation that <a href="https://ign.schrodinger-hat.it/">ImageGoNord</a>
-        does to images. In some cases this can be desired result, but Palettizer 
-        gives you ability to go further.
+        At this step, the image gets a cartoonishly rough look. And that is the only 
+        transformation that 
+        <a href="https://ign.schrodinger-hat.it/">ImageGoNord</a>
+        does to the images. In some cases, this can be 
+        the desired result, but Palettizer gives you an ability to go further.
       </p>
       <h3 class="paragraph">2. Blurring</h3>
       <v-img src="../assets/blur.jpg" class="example-image" contain max-width="800"></v-img>
       <p>
-        You can observe shap looking pixels in several areas. Unfortunately, it is mostly inevitable.
-        Techically, we just compressed our image and now it uses only colors from the palette instead
-        of 16 million colors of RGB color space. But this problem can be fixed easily with blur.
-        Blurring helps to smooth out transitions between areas with different colors. 
-        Palettizer uses <a href="https://github.com/flozz/StackBlur">StackBlur</a> library
-        for blurring. It gives results very similar to gaussian blur, but runs significantly faster.
+        You can see sharp-looking pixels in several areas. Unfortunately, it is inevitable 
+        in some cases. Technically, we just compressed our image because now it uses only (!) 
+        colors from the palette instead of 16 million colors of RGB color space. But this 
+        problem can be fixed with a little bit of blurring as it helps to smooth out 
+        transitions between different color areas. Palettizer uses the 
+        <a href="https://github.com/flozz/StackBlur">StackBlur</a> library 
+        to do that. The tool gives results very similar to Gaussian blur but runs significantly 
+        faster.
       </p>
       <h3 class="paragraph">3. Tweaking brightness</h3>
       <v-img src="../assets/final-result.jpg" class="example-image" contain max-width="800"></v-img>
       <p>
-        This is very important step, the most magical in my opinion. My algorithm loops through
-        pixels of image from previous step and original image simultaneously and counts their
-        brightness. The most common way to calculate brightness of a RGB pixel is
+        This is an extremely important step, somehow magical in my opinion. My algorithm 
+        loops through pixels of the image from the previous step and original image 
+        simultaneously and calculates their brightness. The most common way to do that 
+        for an RGB pixel is
         <vue-mathjax formula="$$\small{B=\frac{r+g+b}{3}}$$"></vue-mathjax>
-        But it is not appropriate for this application. Humans do not perecieve
-        brightness like this. Palettizer uses formula optimized for human sight
+        But it is not appropriate in this case. Humans do not perceive brightness 
+        like the computer does. Palettizer uses a formula optimized for human sight.
         <vue-mathjax formula="$$\small{B=r*0.2126+g*0.7152+b*0.0722}$$"></vue-mathjax>
-        When original brightness and current brightness are calculated we can use these values
-        to alter color of current pixel so it's brightness is exactly the same as brightness
-        of it's origin pixel in the input image. 
+        When original brightness and current brightness are calculated we can use these 
+        values to alter the color of the current pixel so its brightness is exactly 
+        the same as that of its origin pixel in the input image.
         <vue-mathjax formula="$$\small{B_1\text{ - original}, B_2\text{ - current}}$$"></vue-mathjax>
-        We need to calculate their difference, this value will be used as a
-        multiplication factor for brightness tweaking
+        We need to calculate their difference, this value will be used as a multiplication 
+        factor for brightness tweaking
         <vue-mathjax formula="$$\small{F=\frac{B_1}{B_2}}$$"></vue-mathjax>
         Now we can calculate new RGB values for our pixel
         <vue-mathjax formula="$$\small{(r_n,g_n,b_n)\text{ - new values},(r_o,g_o,b_o)\text{ - old values}}$$"></vue-mathjax>
@@ -106,10 +115,11 @@
         </figure>
       </img-comparison-slider>
       <p>
-        Brightness stepping gives image cartoonish look. This effect is achieved by
-        rounding brightness multiplication factor to first decimal place.
-        After that resulting pixel brightness is not always the same as in original.
-        It becomes only approximation of it, creating this staircase like pattern.
+        Brightness stepping gives the image a cartoonish look. This effect is 
+        achieved by rounding the brightness multiplication factor to the first 
+        decimal. After that the resulting pixel brightness is not always the same 
+        as that of the original. It becomes an approximation of it, creating a 
+        staircase-like pattern.
         <vue-mathjax formula="$$\small{F=\frac{\text{round}(F * 10)}{10}}$$"></vue-mathjax>
       </p>
       <img-comparison-slider>
@@ -123,9 +133,10 @@
         </figure>
       </img-comparison-slider>
       <p>
-        As I mentioned above, there multiple ways of calculating distance between two colors.
-        Although by default Palettizer uses linear formula, there is an option to use
-        quadratic formula. This will change colors in some areas in the image.
+        As I mentioned above, there are multiple ways of calculating the distance 
+        between two colors. Although by default Palettizer uses linear formula, there 
+        is an option to use the quadratic formula. It will change colors in some areas 
+        in the image.
         <vue-mathjax formula="$$\small{D_L=|r_1-r_2|+|g_1-g_2|+|b_1-b_2|}$$"></vue-mathjax>
         <vue-mathjax formula="$$\small{D_Q=\sqrt{(r_1-r_2)^2+(g_1-g_2)^2+(b_1-b_2)^2}}$$"></vue-mathjax>
       </p>
@@ -140,9 +151,10 @@
         </figure>
       </img-comparison-slider>
       <p>
-        Blur radius controls amount of applied blur. The more blur, the less 
-        sharp pixels there are. If brightness tweaking is on, blur won't affect on
-        detalization, but too much blur may cause loss of color.
+        Blur radius controls the amount of applied blur. The more you blur it, 
+        the smaller the number of sharp pixels. If brightness tweaking is on, 
+        blur won't affect the detalization, but too much blur may cause 
+        loss of color.
       </p>
     </div>
     <div class="section">
