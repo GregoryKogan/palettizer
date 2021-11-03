@@ -1,7 +1,8 @@
 <template>
   <div class="about">
     <h1 style="margin-top: 10px; font-size: 40px;">Palettizer</h1>
-    <div class="section">
+    <div class="block-spacer spacer-tdl"></div>
+    <div class="section light-section">
       <h2>Why?</h2>
       <p>
         This summer I fully switched to GNU/Linux as my desktop OS. 
@@ -31,10 +32,11 @@
       src="../assets/logo.png" 
       contain
       max-width="150"
-      style="width: 40%; margin-left: auto; margin-right: auto;"
+      style="width: 40%; margin-left: auto; margin-right: auto; margin-bottom: 20px;"
       ></v-img>
     </div>
-    <div class="section">
+    <div class="block-spacer spacer-bld"></div>
+    <div class="section dark-section">
       <h2>How it works?</h2>
       <v-img src="../assets/original.jpg" class="example-image" contain max-width="800">
         <span class="image-name">Original image</span>
@@ -102,7 +104,8 @@
         We need to clip max possible value at 255, because it's maximal possible value in RGB.
       </p>
     </div>
-    <div class="section">
+    <div class="block-spacer spacer-tdl"></div>
+    <div class="section light-section">
       <h2>Options</h2>
       <div class="call-to-action">Move the line to see the difference</div>
       <img-comparison-slider>
@@ -158,7 +161,8 @@
         loss of color.
       </p>
     </div>
-    <div class="section">
+    <div class="block-spacer spacer-bld"></div>
+    <div class="section dark-section">
       <h2>Examples</h2>
       <div class="call-to-action">Swipe to see more examples!</div>
       <div class="carousel-cap"></div>
@@ -174,11 +178,12 @@
       </carousel>
       <span class="slide-description">{{examples[currentIndex].theme}}</span>
     </div>
-    <v-row justify="space-around" style="width: 100%;">
+    <div class="block-spacer spacer-tdl"></div>
+    <v-row justify="space-around" style="width: 100%; background-color: #44475a;">
       <PatreonButton style="margin-top: 20px;" />
       <GitHubButton style="margin-top: 20px;" />
     </v-row>
-    <div style="height: 30px"></div>
+    <div style="height: 30px; width: 100%; background-color: #44475a;"></div>
   </div>
 </template>
 
@@ -226,8 +231,28 @@ export default {
 </script>
 
 <style>
+  .block-spacer{
+    aspect-ratio: 960/250;
+    width: 100vw;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+  }
+
+  .spacer-bdl{
+    background-image: url('../assets/graphics/bottom-dark-light.svg');
+  }
+  .spacer-bld{
+    background-image: url('../assets/graphics/bottom-light-dark.svg');
+  }
+  .spacer-tdl{
+    background-image: url('../assets/graphics/top-dark-light.svg');
+  }
+  .spacer-tld{
+    background-image: url('../assets/graphics/top-light-dark.svg');
+  }
+
   .about {
-    width: 90%;
     margin: auto;
     display: flex;
     flex-direction: column;
@@ -248,9 +273,14 @@ export default {
     margin-left: auto;
     margin-right: auto;
     border-radius: 8px;
-    border: solid 3px #44475a;
     transition: border 200ms ease-in-out;
     margin-bottom: 10px;
+  }
+  .about .dark-section img-comparison-slider{
+    border: solid 3px #44475a;
+  }
+  .about .light-section img-comparison-slider{
+    border: solid 3px #6272a4;
   }
   .about img-comparison-slider:focus {
     outline: none;
@@ -289,7 +319,14 @@ export default {
 
   .about .section{
     width: 100%;
-    margin-top: 20px;
+    padding-left: 5%;
+    padding-right: 5%;
+  }
+  .about .light-section{
+    background-color: #44475a;
+  }
+  .about .dark-section{
+    background-color: #282a36;
   }
   .about .section h2 {
     margin-right: auto;
@@ -297,10 +334,15 @@ export default {
   }
   .about .section .example-image{
     border-radius: 8px;
-    border: solid 3px #44475a;
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 10px;
+  }
+  .about .light-section .example-image{
+    border: solid 3px #282a36;
+  }
+  .about .dark-section .example-image{
+    border: solid 3px #44475a;
   }
   .about .image-name{
     font-weight: 500;
