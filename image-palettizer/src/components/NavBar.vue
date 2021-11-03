@@ -44,7 +44,7 @@ export default {
         },
         goToHome(){
             if (this.$route.name != 'Home')
-                this.$router.push('/')
+                this.$router.push('/home')
         },
         goToPalettes(){
             if (this.$route.name != 'Palettes'){    
