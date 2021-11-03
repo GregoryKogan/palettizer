@@ -352,6 +352,9 @@ export default {
   .about .section .paragraph{
     margin-top: 15px;
   }
+  .about .dark-section .p-text{
+    background-color: #282a36;
+  }
 
   .about .example-carousel{
     width: min(100%, 800px);
