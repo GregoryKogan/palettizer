@@ -15,6 +15,7 @@
                 </v-row>
                 <v-row>
                     <v-switch
+                    :disabled="!brightnessTweakVal"
                     v-model="brightnessStepsVal"
                     @change="switchBrightnessSteps"
                     color="#50fa7b"
@@ -91,6 +92,8 @@ export default {
     },
     methods: {
         switchBrightnessTweak(val){
+            if (!val)
+                this.brightnessStepsVal = false
             this.$store.commit('setBrightnessTweak', val)
         },
         switchBrightnessSteps(val){
