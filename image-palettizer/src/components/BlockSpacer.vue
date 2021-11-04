@@ -18,23 +18,23 @@ export default {
   }
 
   .spacer-bdl{
-    aspect-ratio: 960/250;
+    height: calc(100vw / 960 * 250);
     background-image: url('../assets/graphics/bottom-dark-light.svg');
   }
   .spacer-bld{
-    aspect-ratio: 960/250;
+    height: calc(100vw / 960 * 250);
     background-image: url('../assets/graphics/bottom-light-dark.svg');
   }
   .spacer-tdl{
-    aspect-ratio: 960/250;
+    height: calc(100vw / 960 * 250);
     background-image: url('../assets/graphics/top-dark-light.svg');
   }
   .spacer-tdl-thin{
-    aspect-ratio: 960/100;
+    height: calc(100vw / 960 * 100);
     background-image: url('../assets/graphics/top-dark-light-thin.svg');
   }
   .spacer-tld{
-    aspect-ratio: 960/250;
+    height: calc(100vw / 960 * 250);
     background-image: url('../assets/graphics/top-light-dark.svg');
   }
 </style>
