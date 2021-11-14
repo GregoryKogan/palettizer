@@ -182,7 +182,6 @@
     </div>
     <BlockSpacer type="tdl"/>
     <v-row justify="space-around" style="width: 100%; background-color: #44475a;">
-      <PatreonButton style="margin-top: 20px;" />
       <GitHubButton style="margin-top: 20px;" />
     </v-row>
     <div style="height: 50px; width: 100%; background-color: #44475a;"></div>
@@ -190,7 +189,6 @@
 </template>
 
 <script>
-import PatreonButton from '../components/PatreonButton.vue'
 import GitHubButton from '../components/GitHubButton.vue'
 import PalettePreview from '../components/PalettePreview.vue'
 import BlockSpacer from '../components/BlockSpacer.vue'
@@ -200,7 +198,6 @@ import {VueMathjax} from 'vue-mathjax'
 export default {
   name: "About",
   components: { 
-    PatreonButton, 
     GitHubButton, 
     PalettePreview, 
     BlockSpacer,
