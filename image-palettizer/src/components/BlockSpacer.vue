@@ -10,7 +10,6 @@ export default {
       sourceImg: null,
     }),
     created(){
-      console.log(this.type)
       if (this.type == 'bdl')
         this.sourceImg = require('../assets/graphics/bottom-dark-light.svg')
       else if (this.type == 'bld')
