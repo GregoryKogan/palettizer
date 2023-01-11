@@ -37,4 +37,7 @@ export default {
   #app{
     background-color: #282a36;
   }
+  body {
+    background-color: #282a36;
+  }
 </style>
