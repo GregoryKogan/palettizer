@@ -32,7 +32,7 @@ import BlockSpacer from '../components/BlockSpacer.vue'
 
 
 export default {
-  name: "Palettes",
+  name: "PalettesView",
   components: { PalettePreview, AddPalette, PaletteMigration, BlockSpacer },
   data: () => ({
     paletteNames: [],

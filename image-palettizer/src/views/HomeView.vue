@@ -40,7 +40,7 @@
       </v-btn>
       <v-spacer></v-spacer>
     </v-row>
-    <Settings />
+    <SettingsMenu />
     <BlockSpacer type="tdl" />
   </div>
 </template>
@@ -48,13 +48,13 @@
 <script>
 import DropZone from '../components/DropZone.vue';
 import ProgressBar from '../components/ProgressBar.vue'
-import Settings from '../components/Settings.vue'
+import SettingsMenu from '../components/SettingsMenu.vue'
 import BlockSpacer from '../components/BlockSpacer.vue'
 import { process } from "../palettizer";
 
 export default {
-  name: "Home",
-  components: { DropZone, ProgressBar, Settings, BlockSpacer },
+  name: "HomeView",
+  components: { DropZone, ProgressBar, SettingsMenu, BlockSpacer },
   mounted(){
     if (this.$store.state.inputImage)
       this.undoPalettizing()

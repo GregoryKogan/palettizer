@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
-import About from '../views/About.vue'
-import Palettes from '../views/Palettes.vue'
+import HomeView from '../views/HomeView.vue'
+import AboutView from '../views/AboutView.vue'
+import PalettesView from '../views/PalettesView.vue'
 
 Vue.use(VueRouter)
 
@@ -10,17 +10,17 @@ const routes = [
   {
     path: '/',
     name: 'Home',
-    component: Home,
+    component: HomeView,
   },
   {
     path: '/about',
     name: 'About',
-    component: About,
+    component: AboutView,
   },
   {
     path: '/palettes',
     name: 'Palettes',
-    component: Palettes,
+    component: PalettesView,
   },
 ]
 

@@ -22,12 +22,12 @@
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~5.0.8",
-    "@vue/cli-plugin-eslint": "~4.5.0",
+    "@vue/cli-plugin-eslint": "~5.0.8",
     "@vue/cli-plugin-router": "~5.0.8",
     "@vue/cli-service": "~5.0.8",
-    "babel-eslint": "^10.1.0",
+    "@babel/eslint-parser": "^7.19.1",
     "eslint": "^8.32.0",
-    "eslint-plugin-vue": "^6.2.2",
+    "eslint-plugin-vue": "^9.9.0",
     "sass": "~1.32.0",
     "sass-loader": "^10.0.0",
     "vue-cli-plugin-vuetify": "~2.5.8",
@@ -44,7 +44,7 @@
       "eslint:recommended"
     ],
     "parserOptions": {
-      "parser": "babel-eslint"
+      "parser": "@babel/eslint-parser"
     },
     "rules": {}
   },

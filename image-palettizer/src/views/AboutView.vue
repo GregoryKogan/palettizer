@@ -196,7 +196,7 @@ import { Carousel, Slide } from 'vue-carousel';
 import {VueMathjax} from 'vue-mathjax'
 
 export default {
-  name: "About",
+  name: "AboutView",
   components: { 
     GitHubButton, 
     PalettePreview, 

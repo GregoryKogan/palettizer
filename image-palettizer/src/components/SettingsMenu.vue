@@ -74,7 +74,7 @@
 import PaletteSelect from './PaletteSelect.vue'
 
 export default {
-    name: "Settings",
+    name: "SettingsMenu",
     components: { PaletteSelect },
     data: () => ({
         brightnessTweakVal: null,
