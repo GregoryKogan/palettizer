@@ -28,8 +28,8 @@
     "@babel/eslint-parser": "^7.21.8",
     "eslint": "^8.41.0",
     "eslint-plugin-vue": "^9.9.0",
+    "sass-loader": "^13.2.2",
     "sass": "~1.62.1",
-    "sass-loader": "^13.2.0",
     "vue-cli-plugin-vuetify": "~2.5.8",
     "vue-template-compiler": "^2.6.11",
     "vuetify-loader": "^1.7.0"
