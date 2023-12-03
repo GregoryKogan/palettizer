@@ -1,6 +1,6 @@
 # palettizer
 
-![Lines of code](https://tokei.rs/b1/github/GregoryKogan/palettizer?style=for-the-badge)
+![Lines of code](https://tokei.ekzhang.com/b1/github/GregoryKogan/palettizer)
 
 Convert any image to color palette of your choice! 
 
